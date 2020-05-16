@@ -9,8 +9,9 @@ int main()
     cin>>rows;
     int nsp=rows-1;
     int nst=1;
-    rows=rows*2-1;
-    for(int r=1; r<=rows; r++)
+    int rows2=rows*2-1;
+    int num2=rows-1;
+    for(int r=1; r<=rows2; r++)
     {
         int num=0;
         for(int csp=1; csp<=nsp; csp++)
@@ -19,20 +20,41 @@ int main()
         }
         for(int cst=1; cst<=nst; cst++)
         {
-            if(cst<=(nst/2))
+            if(cst<=(nst/2) && r<=rows)
             {
                 cout<<r+num;
                 num++;
             }
-            if(cst>(nst/2))
+            if(cst>(nst/2) && r<=rows)
             {
                 cout<<r+num;
                 num--;
             }
-            nst=nst+2;
-            nsp--;
-            cout<<endl;
+            if(cst<=(nst/2) && r>rows)
+            {
+                cout<<num2+num;
+                num++;
+            }
+            if(cst>(nst/2) && r>rows)
+            {
+                cout<<num2+num;
+                num--;
+            }
         }
-        
+        if(r>rows)
+        {
+            num2--;
+        }
+        if(r<(rows2/2)+1)
+        {
+        nst=nst+2;
+        nsp--;
+        }
+        if(r>=(rows2/2)+1)
+        {
+            nst=nst-2;
+            nsp++;
+        }
+        cout<<endl;
     }
 }
